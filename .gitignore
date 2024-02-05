@@ -1,2 +1,4 @@
 .md
 .sql
+node_modules/
+public/output.css
