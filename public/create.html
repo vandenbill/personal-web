@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./output.css" rel="stylesheet">
+    <script src="./htmx.min.js"></script>
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+</head>
+
+<body class="bg-[#171717] text-white flex flex-row p-4 w-screen h-screen gap-5">
+
+    <form class="flex-1 flex flex-col" hx-trigger="keyup[altKey&&key=='s'] from:body" hx-post="/articles/draft"
+        hx-target="#result">
+        <div class="mb-2 h-10 rounded-md px-2 bg-[#333333] flex items-center justify-center">
+            <input type="text" name="title" class="bg-[#333333] w-full" placeholder="Title" value="{{ .title }}">
+        </div>
+
+        <textarea class="w-full h-full bg-[#333333] py-2 px-2 rounded-lg focus:border-none" placeholder="Articles"
+            name="md" id="md" cols="30" rows="10">{{ .draft }}</textarea>
+    </form>
+
+    <div class="flex-1 max-h-screen overflow-y-scroll">
+        <div id="result" class="no-more-tailwind"></div>
+    </div>
+
+    <script>
+        window.onload = function () {
+            var resultElement = document.getElementById("result");
+            resultElement.innerHTML = "{{ .article }}";
+        };
+    </script>
+</body>
+
+</html>
