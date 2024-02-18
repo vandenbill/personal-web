@@ -17,20 +17,11 @@ func main() {
 		panic(err)
 	}
 
-	err = internal.Migrate(db)
-	if err != nil {
+	if err := internal.Migrate(db); err != nil {
 		panic(err)
 	}
 
-	repo := internal.Repo{DB : db}
-	h := internal.Handler{R : repo}
-
-	r.Get("/", h.RootHandler)
-	r.Get("/{name}", h.StaticFile)
-	r.Get("/articles", h.CreateArticleView)
-
-	r.Post("/articles/draft", h.CreateDraftArticle)
-	r.Post("/articles", h.CreateArticle)
+	internal.NewHandler(internal.NewRepo(db), r)
 
 	if err := http.ListenAndServe(":3000", r); err != nil {
 		fmt.Println("Error: ", err)

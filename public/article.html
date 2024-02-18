@@ -4,55 +4,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./output.css" rel="stylesheet">
-    <script src="./htmx.min.js"></script>
-    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+
+    <link href="/public/output.css" rel="stylesheet">
+    <link href="/public/favicon.ico" rel="icon" type="image/x-icon">
+
+    <script src="/public/htmx.min.js"></script>
 </head>
 
-<body class="bg-[#171717] text-white relative">
-    <section class="flex flex-col items-center pt-4 min-h-screen">
+<body>
+    <div class="bg-[#171717] text-white flex flex-col items-center">
         <h1 class="text-3xl leading-10 font-bold mb-2">
-            Understanding Allocations in Go
+            {{ .title }}
         </h1>
         <div class="w-1/2 flex justify-start flex-wrap mb-6">
+            {{ range .tags }}
             <div
                 class="text-xs h-4 flex items-center font-normal justify-center rounded-full border  p-1 mr-1.5 mb-1.5 ">
-                Golang
+                {{ .Name }}
             </div>
-            <div
-                class="text-xs h-4 flex items-center font-normal justify-center rounded-full border  p-1 mr-1.5 mb-1.5 ">
-                System Programming
-            </div>
-            <div
-                class="text-xs h-4 flex items-center font-normal justify-center rounded-full border  p-1 mr-1.5 mb-1.5 ">
-                Operating System
-            </div>
-            <div
-                class="text-xs h-4 flex items-center font-normal justify-center rounded-full border  p-1 mr-1.5 mb-1.5 ">
-                Golang
-            </div>
-            <div
-                class="text-xs h-4 flex items-center font-normal justify-center rounded-full border  p-1 mr-1.5 mb-1.5 ">
-                System Programming
-            </div>
-            <div
-                class="text-xs h-4 flex items-center font-normal justify-center rounded-full border  p-1 mr-1.5 mb-1.5 ">
-                Operating System
-            </div>
-            <div
-                class="text-xs h-4 flex items-center font-normal justify-center rounded-full border  p-1 mr-1.5 mb-1.5 ">
-                Golang
-            </div>
-            <div
-                class="text-xs h-4 flex items-center font-normal justify-center rounded-full border  p-1 mr-1.5 mb-1.5 ">
-                System Programming
-            </div>
-            <div
-                class="text-xs h-4 flex items-center font-normal justify-center rounded-full border  p-1 mr-1.5 mb-1.5 ">
-                Operating System
-            </div>
+            {{ end }}
         </div>
-    </section>
+
+        <div id="article" class="w-1/2 markdown">
+        </div>
+    </div>
 </body>
+
+<script>
+    var article = document.getElementById('article')
+    article.innerHTML = '{{ .article }}'
+</script>
 
 </html>

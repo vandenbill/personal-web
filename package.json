@@ -4,5 +4,8 @@
   },
   "scripts": {
     "watch": "npx tailwindcss build -i ./public/input.css -o ./public/output.css --watch"
+  },
+  "dependencies": {
+    "markdown-it": "^14.0.0"
   }
 }

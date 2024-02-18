@@ -4,214 +4,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./output.css" rel="stylesheet">
-    <script src="./htmx.min.js"></script>
-    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+
+    <link href="/public/output.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/public/favicon.ico">
+
+    <script src="/public/htmx.min.js"></script>
 </head>
 
-<body class="bg-[#171717] text-white relative">
-    <section class="flex flex-col items-center pt-4 min-h-screen">
-        <!-- search -->
-        <header
-            class="group bg-[#333333] has-[:focus]:bg-[#555555] w-1/2 h-10 flex justify-between items-center rounded-xl px-4 mb-6 hover:bg-[#555555]">
-            <input id="search" type="text"
-                class="text-white font-mono bg-[#333333] w-full outline-none focus:bg-[#555555] group-hover:bg-[#555555]"
-                placeholder="CTRL + K">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M11 23V21C8.91672 20.7667 7.12922 19.9042 5.63755 18.4125C4.14588 16.9208 3.28338 15.1333 3.05005 13.05H1.05005V11.05H3.05005C3.28338 8.96667 4.14588 7.17917 5.63755 5.68751C7.12922 4.19584 8.91672 3.33334 11 3.10001V1.10001H13V3.10001C15.0834 3.33334 16.8709 4.19584 18.3625 5.68751C19.8542 7.17917 20.7167 8.96667 20.95 11.05H22.95V13.05H20.95C20.7167 15.1333 19.8542 16.9208 18.3625 18.4125C16.8709 19.9042 15.0834 20.7667 13 21V23H11ZM12 19.05C13.9334 19.05 15.5834 18.3667 16.95 17C18.3167 15.6333 19 13.9833 19 12.05C19 10.1167 18.3167 8.46667 16.95 7.10001C15.5834 5.73334 13.9334 5.05001 12 5.05001C10.0667 5.05001 8.41672 5.73334 7.05005 7.10001C5.68338 8.46667 5.00005 10.1167 5.00005 12.05C5.00005 13.9833 5.68338 15.6333 7.05005 17C8.41672 18.3667 10.0667 19.05 12 19.05Z"
-                    fill="white" />
-                <path
-                    d="M6.66667 12C6.66667 14.9455 9.05448 17.3333 12 17.3333C14.9455 17.3333 17.3333 14.9455 17.3333 12C17.3333 9.05448 14.9455 6.66667 12 6.66667C9.05448 6.66667 6.66667 9.05448 6.66667 12ZM11 13H12V11H11V13Z"
-                    fill="white" />
-            </svg>
-        </header>
-
-        <!-- tags -->
-        <div class="w-3/4 flex justify-center flex-wrap mb-6">
-            <div
-                class="h-6 flex items-center font-normal justify-center rounded-full border-white border p-1 mr-1.5 mb-1.5 hover:bg-white hover:cursor-pointer hover:text-[#171717] hover:font-medium">
-                Golang
-            </div>
-            <div
-                class="h-6 flex items-center justify-center rounded-full border-white border p-1 mr-1.5 hover:bg-white hover:cursor-pointer hover:text-[#171717] hover:font-medium">
-                System
-                Programming
-            </div>
-            <div
-                class="h-6 flex items-center justify-center rounded-full border-white border p-1 mr-1.5 hover:bg-white hover:cursor-pointer hover:text-[#171717] hover:font-medium">
-                Operating
-                System
-            </div>
-            <div
-                class="h-6 flex items-center justify-center rounded-full border-white border p-1 mr-1.5 hover:bg-white hover:cursor-pointer hover:text-[#171717] hover:font-medium">
-                Golang
-            </div>
-            <div
-                class="h-6 flex items-center justify-center rounded-full border-white border p-1 mr-1.5 hover:bg-white hover:cursor-pointer hover:text-[#171717] hover:font-medium">
-                System
-                Programming
-            </div>
-            <div
-                class="h-6 flex items-center justify-center rounded-full border-white border p-1 mr-1.5 hover:bg-white hover:cursor-pointer hover:text-[#171717] hover:font-medium">
-                Operating
-                System
-            </div>
-            <div
-                class="h-6 flex items-center justify-center rounded-full border-white border p-1 mr-1.5 hover:bg-white hover:cursor-pointer hover:text-[#171717] hover:font-medium">
-                Golang
-            </div>
-            <div
-                class="h-6 flex items-center justify-center rounded-full border-white border p-1 mr-1.5 hover:bg-white hover:cursor-pointer hover:text-[#171717] hover:font-medium">
-                Operating
-                System
-            </div>
-            <div
-                class="h-6 flex items-center justify-center rounded-full border-white border p-1 mr-1.5 hover:bg-white hover:cursor-pointer hover:text-[#171717] hover:font-medium">
-                Operating
-                System
-            </div>
-            <div
-                class="h-6 flex items-center justify-center rounded-full border-white border p-1 mr-1.5 hover:bg-white hover:cursor-pointer hover:text-[#171717] hover:font-medium">
-                Golang
-            </div>
-            <div
-                class="h-6 flex items-center justify-center rounded-full border-white border p-1 mr-1.5 hover:bg-white hover:cursor-pointer hover:text-[#171717] hover:font-medium">
-                Operating
-                System
-            </div>
+<body>
+    <div class="bg-[#171717] text-white relative">
+        <!-- floating addresses -->
+        <div class="flex flex-col fixed left-5 top-5 gap-2">
+            <a href="https://linkedin.com/in/mnnabil" target="_blank">
+                <div
+                    class="flex items-center justify-center bg-white rounded-full p-2 border h-10 w-10 hover:bg-white/50">
+                    <svg width="75" height="75" viewBox="0 0 75 75" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M0.284091 75V22.6364H16.9545V75H0.284091ZM8.63636 16.5341C6.29545 16.5341 4.28409 15.7614 2.60227 14.2159C0.920455 12.6477 0.0795456 10.7614 0.0795456 8.55682C0.0795456 6.375 0.920455 4.51136 2.60227 2.96591C4.28409 1.39772 6.29545 0.613632 8.63636 0.613632C11 0.613632 13.0114 1.39772 14.6705 2.96591C16.3523 4.51136 17.1932 6.375 17.1932 8.55682C17.1932 10.7614 16.3523 12.6477 14.6705 14.2159C13.0114 15.7614 11 16.5341 8.63636 16.5341ZM40.3958 45.1364V75H23.7253V22.6364H39.5776V32.25H40.1572C41.3163 29.0455 43.2935 26.5341 46.089 24.7159C48.8844 22.875 52.214 21.9545 56.0776 21.9545C59.7594 21.9545 62.9526 22.7841 65.6572 24.4432C68.3844 26.0795 70.4981 28.375 71.9981 31.3295C73.5208 34.2614 74.2708 37.6932 74.2481 41.625V75H57.5776V44.8977C57.6003 41.9886 56.8617 39.7159 55.3617 38.0795C53.8844 36.4432 51.8276 35.625 49.1912 35.625C47.4412 35.625 45.8958 36.0114 44.5549 36.7841C43.2367 37.5341 42.214 38.6136 41.4867 40.0227C40.7822 41.4318 40.4185 43.1364 40.3958 45.1364Z"
+                            fill="#087FB7" />
+                    </svg>
+                </div>
+            </a>
+            <a href="https://github.com/vandenbill" target="_blank">
+                <div class="flex items-center justify-center bg-white rounded-full p-2 h-10 w-10 hover:bg-white/50">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path
+                            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                    </svg>
+                </div>
+            </a>
         </div>
 
-        <!-- articles -->
-        <div class="w-3/4 flex justify-between flex-wrap">
-            <div class="w-[49.5%] flex flex-col">
-                <a href="./article.html"
-                    class="h-full flex flex-col items-stretch bg-[#333333] rounded-xl p-6 mb-3 hover:cursor-pointer hover:bg-[#555555]">
-                    <h1 class="text-3xl leading-10 font-bold mb-2">
-                        Understanding Allocations in Go
-                    </h1>
-                    <p class="tracking-tight leading-tight text-sm text-white/50">To discuss the allocs/op stat in Go,
-                        we’re
-                        going to be interested in two areas of in our Go programs: the stack and the heap. many popular
-                        programming environments the stack usually refers to the call stack of a thread. A call is a
-                        LIFO
-                        stack programming environments the stack usually refers to the call stack of a thread. A call is
-                        a
-                        LIFO stack programming environments the stack usually refers to the call stack of a thread. A
-                        call
-                        is a LIFO stack data structure that stores arguments, local variables, and other data as a
-                        thread
-                        executes LIFO stack programming environments the stack usually refers to the call stack of a
-                        thread.
-                        A call
-                        is a functions. Each function call adds (pushes) a new frame to the stack, and each returning
-                        function
-                        removes (pops) from the. We must be able to safely free
-                        going to be interested in two areas of in our Go programs: the stack and the heap. many popular
-                        programming environments the stack usually refers to the call stack of a thread. A call is a
-                        LIFO
-                        stack programming environments the stack usually refers to the call stack of a thread. A call is
-                        a
-                        LIFO stack</p>
-                </a>
+        <!-- main -->
+        <div class="flex flex-col items-center pt-4 min-h-screen">
+            <!-- search -->
+            <header
+                class="group bg-[#333333] has-[:focus]:bg-[#555555] w-1/2 h-10 flex justify-between items-center rounded-xl px-4 mb-6 hover:bg-[#555555]">
+                <input id="search" type="text"
+                    class="text-white font-mono bg-[#333333] w-full outline-none focus:bg-[#555555] group-hover:bg-[#555555]"
+                    placeholder="CTRL + K">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M11 23V21C8.91672 20.7667 7.12922 19.9042 5.63755 18.4125C4.14588 16.9208 3.28338 15.1333 3.05005 13.05H1.05005V11.05H3.05005C3.28338 8.96667 4.14588 7.17917 5.63755 5.68751C7.12922 4.19584 8.91672 3.33334 11 3.10001V1.10001H13V3.10001C15.0834 3.33334 16.8709 4.19584 18.3625 5.68751C19.8542 7.17917 20.7167 8.96667 20.95 11.05H22.95V13.05H20.95C20.7167 15.1333 19.8542 16.9208 18.3625 18.4125C16.8709 19.9042 15.0834 20.7667 13 21V23H11ZM12 19.05C13.9334 19.05 15.5834 18.3667 16.95 17C18.3167 15.6333 19 13.9833 19 12.05C19 10.1167 18.3167 8.46667 16.95 7.10001C15.5834 5.73334 13.9334 5.05001 12 5.05001C10.0667 5.05001 8.41672 5.73334 7.05005 7.10001C5.68338 8.46667 5.00005 10.1167 5.00005 12.05C5.00005 13.9833 5.68338 15.6333 7.05005 17C8.41672 18.3667 10.0667 19.05 12 19.05Z"
+                        fill="white" />
+                    <path
+                        d="M6.66667 12C6.66667 14.9455 9.05448 17.3333 12 17.3333C14.9455 17.3333 17.3333 14.9455 17.3333 12C17.3333 9.05448 14.9455 6.66667 12 6.66667C9.05448 6.66667 6.66667 9.05448 6.66667 12ZM11 13H12V11H11V13Z"
+                        fill="white" />
+                </svg>
+            </header>
+
+            <!-- tags -->
+            <div class="w-3/4 flex justify-center flex-wrap mb-6">
+                {{ range .tags }}
                 <div
-                    class="h-full flex flex-col bg-[#333333] rounded-xl p-6 mb-5 hover:cursor-pointer hover:bg-[#555555]">
-                    <h1 class="text-3xl leading-10 font-bold mb-2">
-                        Understanding Allocations in Go
-                    </h1>
-                    <p class="tracking-tight leading-tight text-sm text-white/50">To discuss the allocs/op stat in Go,
-                        we’re
-                        going to be interested in two areas of in our Go programs: the stack and the heap. many popular
-                        programming environments the stack usually refers to the call stack of a thread. A call is a
-                        LIFO
-                        stack programming environments the stack usually refers to the call stack of a thread. A call is
-                        a
-                        LIFO
-                        stack data structure that stores arguments, local variables, and other data as a thread executes
-                        functions. Each function call adds (pushes) a new frame to the stack, and each returning
-                        function
-                        removes (pops) from the. We must be able to safely free </p>
+                    class="h-6 flex items-center font-normal justify-center rounded-full border-white border p-1 mr-1.5 mb-1.5 hover:bg-white hover:cursor-pointer hover:text-[#171717] hover:font-medium">
+                    {{ .Name }}
+                </div>
+                {{ end }}
+            </div>
+
+            <!-- articles -->
+            {{ if lt ( len .leftArticles ) 1 }}
+            <div class="w-3/4 flex justify-start">
+                <p class="text-gray-400">There is no article</p>
+            </div>
+            {{ end }}
+
+            <div class="w-3/4 flex justify-between flex-wrap">
+                <div class="w-[49.5%] flex flex-col" id="right-col">
+                    {{ range .leftArticles }}
+                    <div
+                        class="flex flex-col h-max items-stretch bg-[#333333] rounded-xl p-6 mb-3 hover:cursor-pointer hover:bg-[#555555]">
+                        <a hx-boost="true" href="/articles/{{ .ID }}">
+                            <h1 class="text-3xl leading-10 font-bold mb-2">
+                                {{ .Title }}
+                            </h1>
+                            <p class="tracking-tight leading-tight text-sm text-white/50">{{ .Description }}</p>
+                        </a>
+                    </div>
+                    {{ end }}
+                </div>
+
+                <div class="w-[49.5%] flex flex-col" id="left-col">
+                    {{ range .rightArticles }}
+                    <a hx-boost="true" href="/articles/{{ .ID }}">
+                        <div
+                            class="h-full flex flex-col items-stretch bg-[#333333] rounded-xl p-6 mb-3 hover:cursor-pointer hover:bg-[#555555]">
+                            <h1 class="text-3xl leading-10 font-bold mb-2">
+                                {{ .Title }}
+                            </h1>
+                            <p class="tracking-tight leading-tight text-sm text-white/50">{{ .Description }}</p>
+                        </div>
+                    </a>
+                    {{ end }}
                 </div>
             </div>
-            <div class="w-[49.5%] flex flex-col">
-                <div
-                    class="h-full flex flex-col bg-[#333333] rounded-xl p-6 mb-3 hover:cursor-pointer hover:bg-[#555555]">
-                    <h1 class="text-3xl leading-10 font-bold mb-2">
-                        Understanding Allocations in Go
-                    </h1>
-                    <p class="tracking-tight leading-tight text-sm text-white/50">To discuss the allocs/op stat in Go,
-                        we’re
-                        going to be interested in two areas of in our Go programs: the stack and the heap. many popular
-                        programming environments the stack usually refers to the call stack of a thread. A call is a
-                        LIFO
-                        stack programming environments the stack usually refers to the call stack of a thread. A call is
-                        a
-                        LIFO
-                        stack data structure that stores arguments, local variables, and other data as a thread executes
-                        functions. Each function call adds (pushes) a new frame to the stack, and each returning
-                        function
-                        removes (pops) from the. We must be able to safely free </p>
-                </div>
-                <div
-                    class="h-full flex flex-col items-stretch bg-[#333333] rounded-xl p-6 mb-3 hover:cursor-pointer hover:bg-[#555555]">
-                    <h1 class="text-3xl leading-10 font-bold mb-2">
-                        Understanding Allocations in Go
-                    </h1>
-                    <p class="tracking-tight leading-tight text-sm text-white/50">To discuss the allocs/op stat in Go,
-                        we’re
-                        going to be interested in two areas of in our Go programs: the stack and the heap. many popular
-                        programming environments the stack usually refers to the call stack of a thread. A call is a
-                        LIFO
-                        stack programming environments the stack usually refers to the call stack of a thread. A call is
-                        a
-                        LIFO stack programming environments the stack usually refers to the call stack of a thread. A
-                        call
-                        is a LIFO stack data structure that stores arguments, local variables, and other data as a
-                        thread
-                        executes LIFO stack programming environments the stack usually refers to the call stack of a
-                        thread.
-                        A call
-                        is a functions. Each function call adds (pushes) a new frame to the stack, and each returning
-                        function
-                        removes (pops) from the. We must be able to safely free
-                        going to be interested in two areas of in our Go programs: the stack and the heap. many popular
-                        programming environments the stack usually refers to the call stack of a thread. A call is a
-                        LIFO
-                        stack programming environments the stack usually refers to the call stack of a thread. A call is
-                        a
-                        LIFO stack</p>
-                </div>
-            </div>
+
+            <!-- footer -->
+            <span class="h-7"> </span>
+            <footer class="w-full text-center absolute bottom-0 right-0 left-0">
+                <p class="mb-1 font-mono tracking-tighter">
+                    &#9400; Muhammad Nailan Nabil. All rights reserved. 02 02 2024
+                </p>
+
+            </footer>
         </div>
-
-        <!-- footer -->
-        <span class="h-7"> </span>
-        <footer class="w-full text-center absolute bottom-0 right-0 left-0">
-            <p class="mb-1 font-mono">
-                XCL™
-            </p>
-        </footer>
-    </section>
-
-    <!-- floating addresses -->
-    <div class="flex flex-col fixed left-5 top-5 gap-2">
-        <a href="https://linkedin.com/in/mnnabil" target="_blank">
-            <div class="flex items-center justify-center bg-white rounded-full p-2 border h-10 w-10 hover:bg-white/50">
-                <svg width="75" height="75" viewBox="0 0 75 75" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M0.284091 75V22.6364H16.9545V75H0.284091ZM8.63636 16.5341C6.29545 16.5341 4.28409 15.7614 2.60227 14.2159C0.920455 12.6477 0.0795456 10.7614 0.0795456 8.55682C0.0795456 6.375 0.920455 4.51136 2.60227 2.96591C4.28409 1.39772 6.29545 0.613632 8.63636 0.613632C11 0.613632 13.0114 1.39772 14.6705 2.96591C16.3523 4.51136 17.1932 6.375 17.1932 8.55682C17.1932 10.7614 16.3523 12.6477 14.6705 14.2159C13.0114 15.7614 11 16.5341 8.63636 16.5341ZM40.3958 45.1364V75H23.7253V22.6364H39.5776V32.25H40.1572C41.3163 29.0455 43.2935 26.5341 46.089 24.7159C48.8844 22.875 52.214 21.9545 56.0776 21.9545C59.7594 21.9545 62.9526 22.7841 65.6572 24.4432C68.3844 26.0795 70.4981 28.375 71.9981 31.3295C73.5208 34.2614 74.2708 37.6932 74.2481 41.625V75H57.5776V44.8977C57.6003 41.9886 56.8617 39.7159 55.3617 38.0795C53.8844 36.4432 51.8276 35.625 49.1912 35.625C47.4412 35.625 45.8958 36.0114 44.5549 36.7841C43.2367 37.5341 42.214 38.6136 41.4867 40.0227C40.7822 41.4318 40.4185 43.1364 40.3958 45.1364Z"
-                        fill="#087FB7" />
-                </svg>
-            </div>
-        </a>
-        <a href="https://github.com/vandenbill" target="_blank">
-            <div class="flex items-center justify-center bg-white rounded-full p-2 h-10 w-10 hover:bg-white/50">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <path
-                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                </svg>
-            </div>
-        </a>
     </div>
 </body>
 

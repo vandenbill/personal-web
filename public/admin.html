@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="/public/output.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/public/favicon.ico">
+
+    <script src="/public/htmx.min.js"></script>
+    <script src="/public/markdown-it.js"></script>
+
+</head>
+
+<body>
+    <div class="bg-[#171717] text-white flex flex-col min-h-screen min-w-screen items-center relative">
+        <header class="flex justify-between w-3/4 py-4">
+            <h1 class="text-2xl font-bold font-mono">Article</h1>
+            <a hx-boost="true" href="/admin/articles/new">
+                <button class="bg-green-700 text-center rounded-md py-2 px-4">Add</button>
+            </a>
+        </header>
+
+        {{ if lt ( len .leftArticles ) 1 }}
+        <div class="w-3/4 flex justify-start">
+            <p class="text-gray-400">There is no article</p>
+        </div>
+        {{ end }}
+
+        <div class="w-3/4 flex justify-between flex-wrap">
+            <div class="w-[49.5%] flex flex-col" id="right-col">
+                {{ range .leftArticles }}
+                <a hx-boost="true" href="/admin/articles/{{ .ID }}">
+                    <div
+                        class="flex flex-col h-max items-stretch bg-[#333333] rounded-xl p-6 mb-3 hover:cursor-pointer hover:bg-[#555555]">
+                        <h1 class="text-3xl leading-10 font-bold mb-2">
+                            {{ .Title }}
+                        </h1>
+                        <p class="tracking-tight leading-tight text-sm text-white/50">{{ .Description }}</p>
+                    </div>
+                </a>
+                {{ end }}
+            </div>
+
+            <div class="w-[49.5%] flex flex-col" id="left-col">
+                {{ range .rightArticles }}
+                <a hx-boost="true" href="/admin/articles/{{ .ID }}">
+                    <div
+                        class="h-max flex flex-col items-stretch bg-[#333333] rounded-xl p-6 mb-3 hover:cursor-pointer hover:bg-[#555555]">
+                        <h1 class="text-3xl leading-10 font-bold mb-2">
+                            {{ .Title }}
+                        </h1>
+                        <p class="tracking-tight leading-tight text-sm text-white/50">{{ .Description }}</p>
+                    </div>
+                </a>
+                {{ end }}
+            </div>
+        </div>
+
+        <span class="h-7"> </span>
+        <footer class="w-full text-center absolute bottom-0 right-0 left-0">
+            <p class="mb-1 font-mono tracking-tighter">
+                &#9400; Muhammad Nailan Nabil. All rights reserved. 02 02 2024
+            </p>
+        </footer>
+    </div>
+</body>
+
+</html>

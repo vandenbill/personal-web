@@ -4,33 +4,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./output.css" rel="stylesheet">
-    <script src="./htmx.min.js"></script>
-    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+    <link href="/public/output.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/public/favicon.ico">
+
+    <script src="/public/htmx.min.js"></script>
+    <script src="/public/alpine.min.js"></script>
+    <script src="/public/markdown-it.js"></script>
+
 </head>
 
-<body class="bg-[#171717] text-white flex flex-row p-4 w-screen h-screen gap-5">
+<body>
+    <div class="bg-[#171717] text-white flex flex-col p-2 h-screen">
+        <div class="flex max-h-[50%]">
+            <div class="flex-1 flex-col h-full">
+                <label for="title" class="mb-1">Title</label>
+                <div class="flex items-center justify-center h-10 bg-[#333333] rounded-md px-2 mb-2">
+                    <input id="title" type="text" name="title" class="bg-[#333333] w-full" placeholder="Title"
+                        value="{{ .title }}">
+                </div>
 
-    <form class="flex-1 flex flex-col" hx-trigger="keyup[altKey&&key=='s'] from:body" hx-post="/articles/draft"
-        hx-target="#result">
-        <div class="mb-2 h-10 rounded-md px-2 bg-[#333333] flex items-center justify-center">
-            <input type="text" name="title" class="bg-[#333333] w-full" placeholder="Title" value="{{ .title }}">
+                <div class="flex gap-2">
+                    <div class="flex-1 flex flex-col mb-2">
+                        <label for="tag" class="mb-1">Tag</label>
+                        <div class="h-10 bg-[#333333] flex rounded-md px-2 items-center min-w-1/2 justify-start mb-2">
+                            <input id="tag" type="text" name="tag" class="bg-[#333333]" placeholder="Tag">
+                        </div>
+
+                        <div class="flex flex-wrap gap-2 max-h-44 overflow-y-scroll">
+                            {{ range .allTags }}
+                            <div class="whitespace-nowrap h-8 flex items-center font-normal justify-center rounded-full border-white border px-2 hover:bg-white hover:cursor-pointer hover:text-[#171717] hover:font-medium"
+                                hx-post="/admin/tags/{{ .ArticleID }}/{{ .ID }}" hx-target="#used-tags">
+                                {{ .Name }}
+                            </div>
+                            {{ end }}
+                        </div>
+                    </div>
+
+                    <div class="flex-1">
+                        <span class="mb-1">Used tags</span>
+                        <div id="used-tags" class="flex flex-wrap items-center gap-2 max-h-56 overflow-y-scroll py-2">
+                            {{ if gt ( len .usedTags ) 0 }}
+                            {{ block "list-tags" .}}
+                            {{ range .usedTags }}
+                            <div
+                                class="whitespace-nowrap h-8 flex items-center font-normal justify-center rounded-full border-white border px-2 hover:bg-white hover:cursor-pointer hover:text-[#171717] hover:font-medium">
+                                {{ .Name }}
+                            </div>
+                            {{ end }}
+                            {{ end }}
+                            {{ else }}
+                            <p class="text-gray-400 text-sm">There is no tag used</p>
+                            {{ end }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <form class="flex-1 flex flex-col ml-2">
+                <label for="description">Description</label>
+                <textarea class="p-2 h-full bg-[#333333] rounded-lg focus:border-none" placeholder="Description"
+                    name="description" id="description" cols="30" rows="10">{{ .description }}</textarea>
+            </form>
         </div>
 
-        <textarea class="w-full h-full bg-[#333333] py-2 px-2 rounded-lg focus:border-none" placeholder="Articles"
-            name="md" id="md" cols="30" rows="10">{{ .draft }}</textarea>
-    </form>
-
-    <div class="flex-1 max-h-screen overflow-y-scroll">
-        <div id="result" class="no-more-tailwind"></div>
+        <div class="flex w-full justify-start">
+            <button id="preview-button" class="bg-gray-500 px-4 py-2 mt-2 mr-1 text-center rounded-md">Preview</button>
+            <button id="modal-button" class="bg-gray-700 px-4 py-2 mt-2 mr-1 text-center rounded-md">Write</button>
+            <button id="save-button" class="bg-green-600 px-4 py-2 mt-2 mr-1 text-center rounded-md"
+                hx-post="/admin/articles/{{ .articleID }}/save"
+                hx-include="[name='markdown'],[name='title'],[name='description'],[name='tag'],[name='tags']"
+                hx-swap="none">Save</button>
+            <button class="bg-orange-600 px-4 py-2 mt-2 mr-1 text-center rounded-md">Draft</button>
+            <button class="bg-red-700 px-4 py-2 mt-2 text-center rounded-md">Publish</button>
+        </div>
     </div>
 
-    <script>
-        window.onload = function () {
-            var resultElement = document.getElementById("result");
-            resultElement.innerHTML = "{{ .article }}";
-        };
-    </script>
+    <dialog id="modal" class="bg-[#171717] text-white min-h-screen min-w-full">
+        <div class="flex min-w-full">
+            <form class="flex-1 flex flex-col focus:border-none max-w-[50%]">
+                <textarea class="bg-[#333333] p-2 h-full focus:border-none" id="markdown" placeholder="Markdown"
+                    name="markdown" cols="30" rows="10">{{ .markdown }}</textarea>
+            </form>
+
+            <div class="flex-1 flex flex-col max-w-[50%]">
+                <div id="result" class="bg-white text-black overflow-y-scroll h-screen markdown px-2">
+                </div>
+            </div>
+        </div>
+    </dialog>
+
+    <!-- TODO why this dialog is show, it supposed to not -->
+    <!-- <dialog id="preview-modal" class="bg-[#171717] border text-white flex justify-center min-h-screen min-w-full">
+        <div id="preview" class="markdown w-3/4"></div>
+    </dialog> -->
 </body>
+
+<script>
+    var md = new window.markdownit();
+    const markdownTextarea = document.getElementById('markdown');
+    const resultContainer = document.getElementById('result');
+    const modalButton = document.getElementById('modal-button')
+    const modal = document.getElementById('modal')
+    const previewButton = document.getElementById('preview-button')
+    const previewModal = document.getElementById('preview-modal')
+    const preview = document.getElementById('preview')
+
+    markdownTextarea.addEventListener('input', function () {
+        const markdownContent = markdownTextarea.value;
+        const htmlContent = md.render(markdownContent);
+        resultContainer.innerHTML = htmlContent;
+    });
+
+    modalButton.addEventListener('click', () => {
+        modal.showModal()
+    })
+
+    previewButton.addEventListener('click', () => {
+        preview.innerHTML = "{{ .article }}"
+        previewModal.showModal()
+    })
+
+    markdownTextarea.addEventListener('scroll', function () {
+        resultContainer.scrollTop = markdownTextarea.scrollTop;
+    });
+
+</script>
 
 </html>

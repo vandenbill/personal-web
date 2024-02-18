@@ -1,6 +1,18 @@
 package internal
 
-type Draft struct {
-	Title   string
-	Draft string
+var DRAFT string = "draft"
+var PUBLISHED string = "published"
+
+type Article struct {
+	ID          int
+	Title       string
+	Markdown    string
+	Description string
+	Status      string
+	Tags        []Tag
+}
+
+type Tag struct {
+	ID   string
+	Name string
 }
